@@ -21,6 +21,7 @@ import androidx.work.WorkerParameters
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.fossify.home.extensions.config
+import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
 import java.text.SimpleDateFormat
@@ -46,9 +47,9 @@ class WallpaperWorker(appContext: Context, workerParams: WorkerParameters) :
         }
 
         val wallType = if (isSystemDarkTheme(applicationContext)) {
-            Constants.WALL_TYPE_DARK
+            WALL_TYPE_DARK
         } else {
-            Constants.WALL_TYPE_LIGHT
+            WALL_TYPE_LIGHT
         }
 
         val wallpaperUrl = getTodaysWallpaper(wallType, config.firstOpenTime)
@@ -73,7 +74,7 @@ class WallpaperWorker(appContext: Context, workerParams: WorkerParameters) :
                 .setConstraints(constraints)
                 .build()
             WorkManager.getInstance(context).enqueueUniquePeriodicWork(
-                Constants.WALLPAPER_WORKER_NAME,
+                WALLPAPER_WORKER_NAME,
                 if (reenqueue) ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE
                 else ExistingPeriodicWorkPolicy.KEEP,
                 request
@@ -82,7 +83,7 @@ class WallpaperWorker(appContext: Context, workerParams: WorkerParameters) :
 
         fun cancel(context: Context) {
             WorkManager.getInstance(context)
-                .cancelUniqueWork(Constants.WALLPAPER_WORKER_NAME)
+                .cancelUniqueWork(WALLPAPER_WORKER_NAME)
         }
 
         private fun isSystemDarkTheme(context: Context) =
@@ -134,7 +135,7 @@ class WallpaperWorker(appContext: Context, workerParams: WorkerParameters) :
             width: Int,
             height: Int
         ): Bitmap = withContext(Dispatchers.IO) {
-            val background = Bitmap.createBitmap(width, height)
+            val background = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
             val heightScale = height.toFloat() / originalImage.height
             val widthScale = width.toFloat() / originalImage.width
             val scale = maxOf(heightScale, widthScale)
@@ -170,7 +171,7 @@ class WallpaperWorker(appContext: Context, workerParams: WorkerParameters) :
                     String.format(Locale.ENGLISH, "%s_%s", month, day)
                 }
 
-                val url = URL(Constants.URL_WALLPAPERS)
+                val url = URL(URL_WALLPAPERS)
                 val connection = url.openConnection() as HttpURLConnection
                 connection.doInput = true
                 connection.connect()
@@ -192,10 +193,10 @@ class WallpaperWorker(appContext: Context, workerParams: WorkerParameters) :
         }
 
         private fun getBackupWallpaper(wallType: String): String {
-            return if (wallType == Constants.WALL_TYPE_LIGHT) {
-                Constants.URL_DEFAULT_LIGHT_WALLPAPER
+            return if (wallType == WALL_TYPE_LIGHT) {
+                URL_DEFAULT_LIGHT_WALLPAPER
             } else {
-                Constants.URL_DEFAULT_DARK_WALLPAPER
+                URL_DEFAULT_DARK_WALLPAPER
             }
         }
 
