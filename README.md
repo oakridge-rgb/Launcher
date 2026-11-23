@@ -1,47 +1,38 @@
-# Fossify Launcher
+# Nice Home
 
-<img alt="Logo" src="graphics/icon.webp" width="120" />
+<img alt="Logo" src="fastlane/metadata/android/en-US/images/icon.png" width="120" />
 
-<a href='https://play.google.com/store/apps/details?id=org.fossify.home'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height=80/></a> <a href="https://f-droid.org/en/packages/org.fossify.home/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Get it on F-Droid" height=80/></a> <a href="https://apt.izzysoft.de/fdroid/index/apk/org.fossify.home"><img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height=80/></a>
+A fork of [Fossify Launcher](https://github.com/FossifyOrg/Launcher) with the
+**Graphite & Ice** treatment from [Nice Launcher](https://github.com/oakridge-rgb/NiceLauncher),
+plus the feature that made that fork fun: the **daily wallpaper**.
 
-Fossify Launcher is your gateway to a fast, personalized, and privacy-first home screen experience.
-No ads, no bloat – just a smooth, efficient launcher designed to fit your unique style and
-preferences.
+## What's different from Fossify Launcher
 
-**🚀 LIGHTNING-FAST NAVIGATION:**  
-Navigate your device with speed and precision. Fossify Launcher is optimized to be responsive and
-fluid, giving you instant access to your favorite apps without lag.
+| | Fossify Launcher | Nice Home |
+| --- | --- | --- |
+| Daily wallpaper | — | ✅ fresh wallpaper every day (ported from Olauncher's WallpaperWorker, light/dark aware, sets home + lock screen) |
+| App name | Launcher | **Nice Home** |
+| Install | `org.fossify.home` | `org.nice.home` (side-by-side install) |
+| Version | 1.10.0 (16) | 1.10.0-nice.1 (17) |
+| Icon | Fossify house | house glyph in the Nice ice gradient on graphite; all 17 color variants kept (they recolor the background) |
+| Build | AGP 9.5.1 | **AGP 9.3.1** pinned (top of Code on the Go's supported range) + heap lowered to 2 GB so it compiles on-device |
 
-**🎨 FULL CUSTOMIZATION:**  
-Tailor your home screen with dynamic themes, custom colors, and layouts. Personalize your launcher
-to match your style with easy-to-use tools that let you create a truly unique setup.
+Everything else is untouched Fossify Launcher: widgets, icon color variants,
+hidden icons, app drawer, folder support. The wallpaper toggle lives in
+**Settings → App drawer section → "Daily new wallpaper"**; scheduling is a 4-hour
+WorkManager periodic job whose day-keyed URL lookup makes it effectively
+once-daily, and it keeps working across reboots with no extra receiver.
 
-**🖼️ COMPLETE WIDGET SUPPORT:**  
-Integrate fully resizable widgets with ease. Whether you need clocks, calendars, or other handy
-tools, Fossify Launcher ensures they blend seamlessly into your home screen design.
+## Build
 
-**📱 NO UNWANTED CLUTTER:**  
-Effortlessly manage your apps by hiding or uninstalling them in just a few taps, keeping your home
-screen organized and clutter-free.
+```
+./gradlew assembleFossDebug    # APK at app/build/outputs/apk/foss/debug/
+```
 
-**🔒 PRIVACY AND SECURITY:**  
-Your privacy is at the heart of Fossify Launcher. With no internet access and no intrusive
-permissions, your data stays with you. No tracking, no ads – just a launcher built to respect your
-privacy.
+Kotlin 2.3.10, KSP, Room, `org.fossify:commons:7.1.3` — all from upstream,
+unchanged. Min heap: 2 GB (`org.gradle.jvmargs`).
 
-**🌐 OPEN-SOURCE ASSURANCE:**  
-Fossify Launcher is built on an open-source foundation, allowing you to review our code on GitHub,
-fostering trust and a community committed to privacy.
+## Credits & license
 
-Find your balance of speed, customization, and privacy with Fossify Launcher.
-
-➡️ Explore more Fossify apps: https://www.fossify.org<br>
-➡️ Open-Source Code: https://www.github.com/FossifyOrg<br>
-➡️ Join the community on Reddit: https://www.reddit.com/r/Fossify<br>
-➡️ Connect on Telegram: https://t.me/Fossify
-
-<div align="center">
-<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.png" width="30%">
-<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.png" width="30%">
-<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_en-US.png" width="30%">
-</div>
+All launcher logic is the Fossify team's work; the wallpaper engine is
+Tanuj's (Olauncher) — both GPLv3, and this fork keeps every credit intact.

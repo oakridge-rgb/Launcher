@@ -1,6 +1,8 @@
 [versions]
 #jetbrains
 kotlin = "2.3.10"
+#Work
+work = "2.10.1"
 #KSP
 ksp = "2.3.12"
 #Detekt
@@ -11,13 +13,15 @@ room = "2.8.5"
 #Fossify
 commons = "7.1.3"
 #Gradle
-gradlePlugins-agp = "9.5.1"
+gradlePlugins-agp = "9.3.1"
 #build
 app-build-compileSDKVersion = "36"
 app-build-targetSDK = "36"
 app-build-minimumSDK = "26"
 app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
+#WorkManager
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
 [libraries]
 #Room
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }

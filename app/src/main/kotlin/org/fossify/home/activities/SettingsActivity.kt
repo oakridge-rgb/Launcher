@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import org.fossify.commons.dialogs.RadioGroupDialog
 import org.fossify.commons.extensions.beVisibleIf
+import org.fossify.commons.extensions.toast
 import org.fossify.commons.extensions.getProperPrimaryColor
 import org.fossify.commons.extensions.launchMoreAppsFromUsIntent
 import org.fossify.commons.extensions.updateTextColors
@@ -52,6 +53,7 @@ class SettingsActivity : SimpleActivity() {
         setupDrawerColumnCount()
         setupDrawerSearchBar()
         setupShowDrawerAppLabels()
+        setupDailyWallpaper()
         setupHomeRowCount()
         setupHomeColumnCount()
         setupShowHomeAppLabels()
@@ -175,6 +177,24 @@ class SettingsActivity : SimpleActivity() {
                     config.drawerColumnCount = newColumnCount
                     setupDrawerColumnCount()
                 }
+            }
+        }
+    }
+
+    private fun setupDailyWallpaper() {
+        binding.settingsDailyWallpaper.isChecked = config.dailyWallpaper
+        binding.settingsDailyWallpaperHolder.setOnClickListener {
+            binding.settingsDailyWallpaper.toggle()
+            config.dailyWallpaper = binding.settingsDailyWallpaper.isChecked
+            if (config.dailyWallpaper) {
+                if (config.firstOpenTime == 0L) {
+                    config.firstOpenTime = System.currentTimeMillis()
+                }
+                WallpaperWorker.schedule(this, reenqueue = true)
+                toast(R.string.daily_wallpaper_enabled)
+            } else {
+                WallpaperWorker.cancel(this)
+                toast(R.string.daily_wallpaper_disabled)
             }
         }
     }

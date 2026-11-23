@@ -37,3 +37,14 @@ const val ITEM_TYPE_FOLDER = 3
 
 const val WIDGET_HOST_ID = 12345
 const val MAX_CLICK_DURATION = 150
+
+// daily wallpaper (ported from Nice Launcher / Olauncher)
+const val DAILY_WALLPAPER = "daily_wallpaper"
+const val DAILY_WALLPAPER_URL = "daily_wallpaper_url"
+const val FIRST_OPEN_TIME = "first_open_time"
+const val WALLPAPER_WORKER_NAME = "wallpaper_worker_name"
+const val WALL_TYPE_LIGHT = "light"
+const val WALL_TYPE_DARK = "dark"
+const val URL_WALLPAPERS = "https://gist.githubusercontent.com/tanujnotes/85e2d0343ace71e76615ac346fbff82b/raw"
+const val URL_DEFAULT_DARK_WALLPAPER = "https://images.unsplash.com/photo-1512551980832-13df02babc9e"
+const val URL_DEFAULT_LIGHT_WALLPAPER = "https://images.unsplash.com/photo-1515549832467-8783363e19b6"

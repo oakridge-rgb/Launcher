@@ -68,6 +68,7 @@ import org.fossify.home.databinding.AllAppsFragmentBinding
 import org.fossify.home.databinding.WidgetsFragmentBinding
 import org.fossify.home.dialogs.RenameItemDialog
 import org.fossify.home.extensions.config
+import org.fossify.home.helpers.WallpaperWorker
 import org.fossify.home.extensions.getDrawableForPackageName
 import org.fossify.home.extensions.getLabel
 import org.fossify.home.extensions.handleGridItemPopupMenu
@@ -250,6 +251,10 @@ class MainActivity : SimpleActivity(), FlingListener {
     override fun onResume() {
         super.onResume()
         wasJustPaused = false
+
+        if (config.dailyWallpaper) {
+            WallpaperWorker.schedule(this)
+        }
         refreshWallpaperSupportsDarkText()
         Handler(Looper.getMainLooper()).postDelayed({
             if (isAllAppsFragmentExpanded() || isWidgetsFragmentExpanded()) {

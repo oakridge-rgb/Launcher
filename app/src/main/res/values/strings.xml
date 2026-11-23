@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_launcher_name">Launcher</string>
+    <string name="app_launcher_name">Nice Home</string>
     <string name="launcher_settings">Launcher Settings</string>
     <string name="app_info">App info</string>
     <string name="touch_hold_widget">Long press the widget and drag it on your home screen</string>
@@ -23,4 +23,7 @@
         Haven't found some strings? There's more at
         https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
     -->
+    <string name="daily_wallpaper">Daily new wallpaper</string>
+    <string name="daily_wallpaper_enabled">Daily wallpaper enabled — it will update shortly</string>
+    <string name="daily_wallpaper_disabled">Daily wallpaper disabled</string>
 </resources>

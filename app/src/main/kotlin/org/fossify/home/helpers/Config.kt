@@ -45,4 +45,16 @@ class Config(context: Context) : BaseConfig(context) {
     var showHomeAppLabels: Boolean
         get() = prefs.getBoolean(SHOW_HOME_APP_LABELS, true)
         set(showHomeAppLabels) = prefs.edit().putBoolean(SHOW_HOME_APP_LABELS, showHomeAppLabels).apply()
+
+    var dailyWallpaper: Boolean
+        get() = prefs.getBoolean(DAILY_WALLPAPER, false)
+        set(dailyWallpaper) = prefs.edit().putBoolean(DAILY_WALLPAPER, dailyWallpaper).apply()
+
+    var dailyWallpaperUrl: String
+        get() = prefs.getString(DAILY_WALLPAPER_URL, "") ?: ""
+        set(dailyWallpaperUrl) = prefs.edit().putString(DAILY_WALLPAPER_URL, dailyWallpaperUrl).apply()
+
+    var firstOpenTime: Long
+        get() = prefs.getLong(FIRST_OPEN_TIME, 0L)
+        set(firstOpenTime) = prefs.edit().putLong(FIRST_OPEN_TIME, firstOpenTime).apply()
 }

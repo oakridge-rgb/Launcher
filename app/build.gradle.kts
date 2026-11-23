@@ -114,7 +114,7 @@ android {
         )
     }
 
-    namespace = project.property("APP_ID").toString()
+    namespace = "org.fossify.home"
 
     lint {
         checkReleaseBuilds = false
@@ -140,6 +140,8 @@ detekt {
 
 dependencies {
     implementation(libs.fossify.commons)
+
+    implementation(libs.androidx.work.runtime.ktx)
 
     implementation(libs.bundles.room)
     ksp(libs.androidx.room.compiler)

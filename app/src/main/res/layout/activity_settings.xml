@@ -232,6 +232,22 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/settings_daily_wallpaper_holder"
+                style="@style/SettingsHolderSwitchStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_background">
+
+                <org.fossify.commons.views.MyMaterialSwitch
+                    android:id="@+id/settings_daily_wallpaper"
+                    style="@style/SettingsSwitchStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/daily_wallpaper" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/settings_show_drawer_app_labels_holder"
                 style="@style/SettingsHolderSwitchStyle"
                 android:layout_width="match_parent"
